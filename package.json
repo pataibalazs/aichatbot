@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pataibalazs/aichatbot#readme",
   "dependencies": {
+    "openai": "^4.4.0",
     "tailwindcss": "^3.3.3"
   }
 }
