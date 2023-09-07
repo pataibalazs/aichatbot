@@ -1,34 +1,33 @@
-import OpenAI from "openai";
+import { CONFIG } from './config.js';
 
-const openai = new OpenAI({
-    apiKey: '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',
-});
+const submitButton = document.querySelector("#submitButton");
 
+export async function getMessage() {
+    const options = {
+        method: "POST",
+        headers: {
+            'Authorization': `Bearer ${CONFIG.API_KEY}`,
+            'Content-Type': 'application/json',
 
-
-
-
-export async function askGPT() {
-    console.log("meghívódott")
-    try {
-        const chatCompletion = await openai.chat.completions.create({
-            messages: [{ role: "user", content: "What is the capital of Budapest?" }],
+        },
+        body: JSON.stringify({
             model: "gpt-3.5-turbo",
-        });
-        
-        if (chatCompletion.choices && chatCompletion.choices[0] && chatCompletion.choices[0].message) {
-            console.log(chatCompletion.choices[0].message.content);
-        }
-    } catch(error) {
-        console.error("Error occurred:", error);
+            messages: [{ role: "user", content: "Tell me a joke!" }],
+            max_tokens: 100
+        })
+    }
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", options)
+        const data = await response.json()
+        console.log(data.choices[0].message.content)
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const sendButton = document.querySelector(".cursor-pointer");  // Assuming "cursor-pointer" is a class
-    if (sendButton) {
-        sendButton.addEventListener("click", askGPT);
-    } else {
-        console.error("Button not found!");
-    }
-});
+submitButton.addEventListener('click', getMessage)
+
+
+
