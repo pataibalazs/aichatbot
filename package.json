@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +19,11 @@
   },
   "homepage": "https://github.com/pataibalazs/aichatbot#readme",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "openai": "^4.4.0",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.3.3"
   }
 }
