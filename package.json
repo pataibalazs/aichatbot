@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,10 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "openai": "^4.4.0",
-    "require": "^2.4.20"
+    "require": "^0.4.4"
   },
   "devDependencies": {
+    "live-server": "^1.2.2",
     "tailwindcss": "^3.3.3"
   }
 }
