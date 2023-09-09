@@ -7,14 +7,21 @@ const chatContainer = document.getElementById("chatContainer");
 
 chatButton.addEventListener("click", () => {
     if (chatContainer.classList.contains("hidden")) {
+        chatContainer.style.animation = "popIn 0.3s forwards";
         chatContainer.classList.remove("hidden");
     } else {
-        chatContainer.classList.add("hidden");
+        chatContainer.style.animation = "popOut 0.3s forwards";
+        setTimeout(() => { 
+            chatContainer.classList.add("hidden");
+        }, 300);
     }
 });
 
 closeButton.addEventListener("click", () => {
-    chatContainer.classList.add("hidden");
+    chatContainer.style.animation = "popOut 0.3s forwards";
+    setTimeout(() => {
+        chatContainer.classList.add("hidden");
+    }, 300);
 });
 
 
