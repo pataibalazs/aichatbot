@@ -1,8 +1,22 @@
-import { CONFIG } from './config.js';
-
 const submitButton = document.querySelector("#submitButton");
 const messageSpace = document.querySelector("#messageSpace");
 const chatbarInput = document.querySelector("#chatbarInput");
+const chatButton = document.getElementById("chatButton");
+const closeButton = document.getElementById("closeButton");
+const chatContainer = document.getElementById("chatContainer");
+
+chatButton.addEventListener("click", () => {
+    if (chatContainer.classList.contains("hidden")) {
+        chatContainer.classList.remove("hidden");
+    } else {
+        chatContainer.classList.add("hidden");
+    }
+});
+
+closeButton.addEventListener("click", () => {
+    chatContainer.classList.add("hidden");
+});
+
 
 function createLoader() {
     const loaderDiv = document.createElement('div');
@@ -16,8 +30,6 @@ function createLoader() {
 
     return loaderDiv;
 }
-
-
 
 function insertMessage(userWrote, message) {
     switch (userWrote) {
@@ -40,8 +52,6 @@ export async function getMessage() {
 
     document.getElementById("chatbarInput").value = '';
     insertMessage(true, userInput);
-
-    // Insert the loader into the chat
     const loader = createLoader();
     messageSpace.appendChild(loader);
     messageSpace.scrollTop = messageSpace.scrollHeight;
@@ -49,7 +59,7 @@ export async function getMessage() {
     const options = {
         method: "POST",
         headers: {
-            'Authorization': `Bearer ${CONFIG.API_KEY}`,
+            'Authorization': `Bearer `,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -67,7 +77,6 @@ export async function getMessage() {
     } catch (error) {
         console.error("An error occurred:", error);
     } finally {
-        // Remove the loader from the chat
         loader.remove();
     }
 }
